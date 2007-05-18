@@ -1,12 +1,12 @@
 %define lib_major 0
-%define lib_name %mklibname lazy %{lib_major}
+%define lib_name %mklibname %name %{lib_major}
 
 
 Name:     tesseract
 Summary:  An OCR Engine that was developed at HP Labs between 1985 and 1995.
 Version: 1.04
 Release: %mkrel 1
-License: LGPL
+License:  Apache License 2.0
 Group: Development/Libraries
 Source: %{name}-%{version}b.tar.bz2
 Patch0:  tesseract-1.04-fix-build.patch
