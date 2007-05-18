@@ -4,8 +4,9 @@
 
 Name:     tesseract
 Summary:  An OCR Engine that was developed at HP Labs between 1985 and 1995.
+URL:	  http://code.google.com/p/tesseract-ocr/
 Version: 1.04
-Release: %mkrel 1
+Release: %mkrel 2
 License:  Apache License 2.0
 Group: Development/Libraries
 Source: %{name}-%{version}b.tar.bz2
