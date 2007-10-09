@@ -34,7 +34,7 @@ uncompressed TIFF images, or libtiff can be added to read compressed
 images.
 
 %package -n %{libnamedev}
-Summary:  Development files from %name.
+Summary:  Development files from %name
 Group:	  Development/C++
 Provides: %name-devel
 Requires: %{name} = %{version}
