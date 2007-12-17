@@ -22,7 +22,6 @@ Source4:        tesseract-%{version}.deu.tar.gz
 Source5:        tesseract-%{version}.spa.tar.gz
 Source6:        tesseract-%{version}.nld.tar.gz
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 %description
 The Tesseract OCR engine was one of the top 3 engines in the 1995 
