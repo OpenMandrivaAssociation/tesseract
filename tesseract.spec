@@ -1,5 +1,5 @@
 %define	name	tesseract
-%define version	2.00
+%define version	2.01
 %define	release	%mkrel 1
 
 %define major 	0
@@ -15,12 +15,14 @@ URL:		http://code.google.com/p/tesseract-ocr/
 License:  	Apache
 Group:    	Graphics
 Source:   	%{name}-%{version}.tar.gz
-Source1:        tesseract-%{version}.eng.tar.gz
-Source2:        tesseract-%{version}.fra.tar.gz
-Source3:        tesseract-%{version}.ita.tar.gz
-Source4:        tesseract-%{version}.deu.tar.gz
-Source5:        tesseract-%{version}.spa.tar.gz
-Source6:        tesseract-%{version}.nld.tar.gz
+Source1:        tesseract-2.00.eng.tar.gz
+Source2:        tesseract-2.00.fra.tar.gz
+Source3:        tesseract-2.00.ita.tar.gz
+Source4:        tesseract-2.00.deu.tar.gz
+Source5:        tesseract-2.00.spa.tar.gz
+Source6:        tesseract-2.00.nld.tar.gz
+Source7:	tesseract-2.01.por.tar.gz
+Source8:	tesseract-2.01.deu-f.tar.gz
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
@@ -90,6 +92,20 @@ Summary: Dutch language pack for tesseract
 %description nld
 Data files required to recognize Dutch OCR.
 
+%package por
+Group:   Graphics
+Summary: Portugese (Brazillian) language pack for tesseract
+
+%description por
+Data files required to recognize Portugese (Brazillian) OCR.
+
+%package deu-f
+Group:   Graphics
+Summary: Fraktu (Old German) language pack for tesseract
+
+%description deu-f
+Data files required to recognize Fraktu (Old German) OCR.
+
 %prep
 %setup -q -a1 -a2 -a3 -a4 -a5 -a6
 
@@ -99,6 +115,10 @@ Data files required to recognize Dutch OCR.
 
 %install
 %makeinstall_std
+pushd %buildroot/%_datadir
+tar xfz %SOURCE7
+tar xfz %SOURCE8
+popd
 
 %clean
 rm -rf %buildroot 
@@ -132,3 +152,8 @@ rm -rf %buildroot
 %files nld
 %{_datadir}/tessdata/nld.*
 
+%files por
+%{_datadir}/tessdata/por.*
+
+%files deu-f
+%{_datadir}/tessdata/deu-f.*
