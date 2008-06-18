@@ -1,5 +1,5 @@
 %define	name	tesseract
-%define version	2.01
+%define version	2.03
 %define	release	%mkrel 1
 
 %define major 	0
@@ -23,7 +23,8 @@ Source5:        tesseract-2.00.spa.tar.gz
 Source6:        tesseract-2.00.nld.tar.gz
 Source7:	tesseract-2.01.por.tar.gz
 Source8:	tesseract-2.01.deu-f.tar.gz
-
+Source9:	tesseract-2.01.vie.tar.gz
+Patch0:		tesseract-2.03-gcc4.3.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -106,18 +107,29 @@ Summary: Fraktu (Old German) language pack for tesseract
 %description deu-f
 Data files required to recognize Fraktu (Old German) OCR.
 
+%package vie
+Group:   Graphics
+Summary: Vietnamese Language data for Tesseract
+
+%description vie
+Data files required to recognize Vietnamese OCR.
+
 %prep
 %setup -q -a1 -a2 -a3 -a4 -a5 -a6
+%patch0 -p1
+rm -f java/Makefile
 
 %build
 %configure2_5x
 %make
 
 %install
+rm -fr %buildroot
 %makeinstall_std
 pushd %buildroot/%_datadir
 tar xfz %SOURCE7
 tar xfz %SOURCE8
+tar xfz %SOURCE9
 popd
 
 %clean
@@ -157,3 +169,6 @@ rm -rf %buildroot
 
 %files deu-f
 %{_datadir}/tessdata/deu-f.*
+
+%files vie
+%{_datadir}/tessdata/vie.*
