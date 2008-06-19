@@ -117,10 +117,10 @@ Data files required to recognize Vietnamese OCR.
 %prep
 %setup -q -a1 -a2 -a3 -a4 -a5 -a6
 %patch0 -p1
-rm -f java/Makefile
 
 %build
 %configure2_5x
+rm -f java/makefile
 %make
 
 %install
