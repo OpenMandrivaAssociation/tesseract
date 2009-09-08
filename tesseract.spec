@@ -1,6 +1,6 @@
 %define	name	tesseract
 %define version	2.03
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 
 %define major 	0
 %define libname %mklibname %name %{major}
