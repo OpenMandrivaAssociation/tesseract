@@ -1,6 +1,6 @@
 Name: tesseract
 Version: 2.04
-Release: %mkrel 1
+Release: %mkrel 3
 Summary: A high-performance OCR engine
 URL: http://code.google.com/p/tesseract-ocr/
 License: Apache
@@ -49,6 +49,22 @@ images.
 
 #-----------------------------------------------------------------
 
+%define tesseract_full_major 2
+%define libtesseract_full %mklibname tesseract_full %{tesseract_full_major}
+
+%package -n %{libtesseract_full}
+Summary: Nepomuk support library
+Group: System/Libraries
+
+%description -n %{libtesseract_full}
+Nepomuk support library.
+
+%files -n %{libtesseract_full}
+%defattr(-,root,root,-)
+%{_kde_libdir}/libtesseract_full.so.%{tesseract_full_major}*
+
+#-----------------------------------------------------------------
+
 %package devel
 Summary: Development files from %name
 Group:  Development/C++
@@ -68,7 +84,7 @@ images.
 %files devel
 %defattr(-,root,root)
 %{_includedir}/tesseract
-%{_libdir}/*.a
+%{_libdir}/*.so
 
 #-----------------------------------------------------------------
 
