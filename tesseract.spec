@@ -1,6 +1,6 @@
 Name: tesseract
 Version: 2.04
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: A high-performance OCR engine
 URL: http://code.google.com/p/tesseract-ocr/
 License: Apache
@@ -68,6 +68,7 @@ Nepomuk support library.
 %package devel
 Summary: Development files from %name
 Group:  Development/C++
+Requires: %{libtesseract_full} = %version-%release
 Provides: %{mklibname %name -d} = %version-%release
 Obsoletes: %{mklibname %name -d} < 2.04
 
