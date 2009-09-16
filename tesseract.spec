@@ -61,7 +61,7 @@ Nepomuk support library.
 
 %files -n %{libtesseract_full}
 %defattr(-,root,root,-)
-%{_kde_libdir}/libtesseract_full.so.%{tesseract_full_major}*
+%_libdir/libtesseract_full.so.%{tesseract_full_major}*
 
 #-----------------------------------------------------------------
 
