@@ -1,6 +1,6 @@
 Name: tesseract
 Version: 2.04
-Release: %mkrel 4
+Release: %mkrel 5
 Summary: A high-performance OCR engine
 URL: http://code.google.com/p/tesseract-ocr/
 License: Apache
