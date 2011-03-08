@@ -1,11 +1,11 @@
 Name: tesseract
-Version: 2.04
-Release: %mkrel 6
+Version: 3.00
+Release: %mkrel 1
 Summary: A high-performance OCR engine
 URL: http://code.google.com/p/tesseract-ocr/
 License: Apache
 Group: Graphics
-Source: %{name}-%{version}.tar.gz
+Source: %{name}-%{version}.tar.xz
 Source1: tesseract-2.00.eng.tar.gz
 Source2: tesseract-2.00.fra.tar.gz
 Source3: tesseract-2.00.ita.tar.gz
