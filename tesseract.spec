@@ -208,9 +208,9 @@ Data files required to recognize Vietnamese OCR.
 
 %prep
 %setup -q -a1 -a2 -a3 -a4 -a5 -a6
-%patch0 -p1 
-%patch1 -p1 -b .orig 
-%patch2 -p0 -b .orig
+# %patch0 -p1 
+# %patch1 -p1 -b .orig 
+# %patch2 -p0 -b .orig
 
 %build
 %cmake
