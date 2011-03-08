@@ -213,7 +213,7 @@ Data files required to recognize Vietnamese OCR.
 # %patch2 -p0 -b .orig
 
 %build
-%cmake
+%configure
 %make 
 
 %install
