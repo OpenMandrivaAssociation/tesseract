@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+%define Werror_cflags %nil
 Name: tesseract
 Version: 3.00
 Release: %mkrel 1
@@ -49,19 +51,19 @@ images.
 
 #-----------------------------------------------------------------
 
-%define tesseract_full_major 2
-%define libtesseract_full %mklibname tesseract_full %{tesseract_full_major}
+%define tesseract_major 3
+%define libtesseract %mklibname tesseract %{tesseract_major}
 
-%package -n %{libtesseract_full}
-Summary: Nepomuk support library
+%package -n %{libtesseract}
+Summary: %name support library
 Group: System/Libraries
 
-%description -n %{libtesseract_full}
-Nepomuk support library.
+%description -n %{libtesseract}
+%name library.
 
-%files -n %{libtesseract_full}
+%files -n %{libtesseract}
 %defattr(-,root,root,-)
-%_libdir/libtesseract_full.so.%{tesseract_full_major}*
+%_libdir/libtesseract*.so.%{tesseract_major}*
 
 #-----------------------------------------------------------------
 
@@ -86,84 +88,6 @@ images.
 %defattr(-,root,root)
 %{_includedir}/tesseract
 %{_libdir}/*.so
-
-#-----------------------------------------------------------------
-
-%package eng
-Group:   Graphics
-Summary: English language pack for tesseract
-Provides: tesseract-language
-
-%description eng
-Data files required to recognize English OCR.
-
-%files eng
-%{_datadir}/tessdata/eng.*
-
-#-----------------------------------------------------------------
-
-%package fra
-Group:   Graphics
-Summary: French language pack for tesseract
-Provides: tesseract-language
-
-%description fra
-Data files required to recognize French OCR.
-
-%files fra
-%{_datadir}/tessdata/fra.*
-
-#-----------------------------------------------------------------
-
-%package ita
-Group:   Graphics
-Summary: Italian language pack for tesseract
-Provides: tesseract-language
-
-%description ita
-Data files required to recognize Italian OCR.
-
-%files ita
-%{_datadir}/tessdata/ita.*
-
-#-----------------------------------------------------------------
-
-%package deu
-Group:   Graphics
-Summary: German language pack for tesseract
-Provides: tesseract-language
-
-%description deu
-Data files required to recognize German OCR.
-
-%files deu
-%{_datadir}/tessdata/deu.*
-
-#-----------------------------------------------------------------
-
-%package spa
-Group:   Graphics
-Summary: Spanish language pack for tesseract
-Provides: tesseract-language
-
-%description spa
-Data files required to recognize Spanish OCR.
-
-%files spa
-%{_datadir}/tessdata/spa.*
-
-#-----------------------------------------------------------------
-
-%package nld
-Group:   Graphics
-Summary: Dutch language pack for tesseract
-Provides: tesseract-language
-
-%description nld
-Data files required to recognize Dutch OCR.
-
-%files nld
-%{_datadir}/tessdata/nld.*
 
 #-----------------------------------------------------------------
 
@@ -218,13 +142,16 @@ Data files required to recognize Vietnamese OCR.
 
 %install
 rm -fr %buildroot
-%makeinstall_std -C build
+%makeinstall_std
 
 pushd %buildroot/%_datadir
 tar xfz %SOURCE7
 tar xfz %SOURCE8
 tar xfz %SOURCE9
 popd
+
+rm -fr %buildroot%{_libdir}/libtesseract_*.a
+rm -fr %buildroot%{_libdir}/libtesseract_*.la
 
 %clean
 rm -rf %buildroot 
