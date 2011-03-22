@@ -70,7 +70,7 @@ Group: System/Libraries
 %package devel
 Summary: Development files from %name
 Group:  Development/C++
-Requires: %{libtesseract_full} = %version-%release
+Requires: %{libtesseract} = %version-%release
 Provides: %{mklibname %name -d} = %version-%release
 Obsoletes: %{mklibname %name -d} < 2.04
 
