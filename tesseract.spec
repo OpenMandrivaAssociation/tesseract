@@ -13,12 +13,12 @@ Tesseract data files required to recognize %{?3:%3 }%{2} text. \
 
 Name:		tesseract
 Version:	3.01
-Release:	%mkrel 1
+Release:	2
 Summary:	A high-performance OCR engine
 URL:		http://code.google.com/p/tesseract-ocr/
 License:	Apache
 Group:		Graphics
-Source:		%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 Source1:	tesseract-ocr-3.01.ara.tar.gz
 Source2:	tesseract-ocr-3.01.eng.tar.gz
 Source3:	tesseract-ocr-3.01.heb-com.tar.gz
@@ -67,6 +67,7 @@ Source44:	ukr.traineddata.gz
 Source45:	vie.traineddata.gz
 
 Patch1:		tesseract-3.01-mdv-format-security.patch
+Patch2:		tesseract-3.01-upstream-buildfix.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	leptonica-devel
@@ -203,6 +204,7 @@ Tesseract data files required to recognize Hebrew community text.
 mv ../tesseract-ocr/tessdata/* ./tessdata/
 rm -rf ../tesseract-ocr
 %patch1 -p1
+%patch2 -p1
 
 for archive in %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} %{SOURCE36} %{SOURCE37} %{SOURCE38} %{SOURCE39} %{SOURCE40} %{SOURCE41} %{SOURCE42} %{SOURCE43} %{SOURCE44} %{SOURCE45}
 do
@@ -211,7 +213,7 @@ gzip -cd $archive > ./tessdata/$filename
 done
 
 %build
-%__automake
+./autogen.sh
 %configure2_5x
 %make 
 
@@ -226,8 +228,3 @@ done
 
 rm -f %{buildroot}%{_libdir}/*.a
 rm -f %{buildroot}%{_libdir}/*.la
-
-%clean
-rm -rf %buildroot 
-
-
