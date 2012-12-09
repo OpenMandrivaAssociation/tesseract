@@ -214,7 +214,7 @@ done
 
 %build
 ./autogen.sh
-%configure2_5x
+%configure2_5x --disable-static
 %make 
 
 %install
@@ -226,5 +226,85 @@ do
 install -m 644 -D $file %{buildroot}%{_datadir}/tessdata
 done
 
-rm -f %{buildroot}%{_libdir}/*.a
-rm -f %{buildroot}%{_libdir}/*.la
+
+%changelog
+* Sun Nov 06 2011 Andrey Smirnov <asmirnov@mandriva.org> 3.01-1mdv2012.0
++ Revision: 722812
+- Update to 3.01
+  Linked to Leptonica library
+  Couple tons of new language data
+
+* Tue Mar 22 2011 Nicolas Lécureuil <nlecureuil@mandriva.com> 3.00-1
++ Revision: 647503
+- Fix requires in the devel package
+- make it build
+  Fix file list
+  Do not package .la/.a files
+
+  + Zombie Ryushu <ryushu@mandriva.org>
+    - use configure
+    - Remove deprecated patches
+    - Upgrade to 3.00
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 2.04-6mdv2011.0
++ Revision: 607988
+- rebuild
+
+* Wed Mar 17 2010 Oden Eriksson <oeriksson@mandriva.com> 2.04-5mdv2010.1
++ Revision: 524227
+- rebuilt for 2010.1
+
+* Wed Sep 16 2009 Helio Chissini de Castro <helio@mandriva.com> 2.04-4mdv2010.0
++ Revision: 443609
+- Devel should requires main library
+
+* Wed Sep 16 2009 Helio Chissini de Castro <helio@mandriva.com> 2.04-3mdv2010.0
++ Revision: 443571
+- Move tesseract_full to be a shared library. This will solve all issues having with static linking and make olena and nepomuk-scribo happy.
+  Hope upstream accept this patch
+
+* Wed Sep 16 2009 Helio Chissini de Castro <helio@mandriva.com> 2.04-1mdv2010.0
++ Revision: 443344
+- Create new buildsystem for tesseract based on cmake
+- Fix gcc 4.3 build
+- Splitted in proper way languages
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Thu Jun 19 2008 Funda Wang <fwang@mandriva.org> 2.03-1mdv2009.0
++ Revision: 226134
+- remove java makefile
+- New version 2.03
+- add patch to build against gcc4.3
+
+* Tue Jan 29 2008 Austin Acton <austin@mandriva.org> 2.01-1mdv2008.1
++ Revision: 159875
+- new version
+- add two new language files
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - fix summary-ended-with-dot
+
+* Sat Aug 25 2007 Austin Acton <austin@mandriva.org> 2.00-1mdv2008.0
++ Revision: 71373
+- 2.00
+- clean up this disgusting spec file
+- fix groups, licenses
+- bundle language files
+- auto optflags
+- simplify file lists
+- simplify summaries and descriptions
+
+  + Nicolas Lécureuil <nlecureuil@mandriva.com>
+    - Add URL  thanks Austin
+
+* Fri May 18 2007 Nicolas Lécureuil <nlecureuil@mandriva.com> 1.04-1mdv2008.0
++ Revision: 27786
+- Fix Licence
+- Import tesseract
+
