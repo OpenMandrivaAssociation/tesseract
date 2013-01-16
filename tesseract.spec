@@ -10,64 +10,89 @@ Tesseract data files required to recognize %{?3:%3 }%{2} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
+%define major %(echo %version |cut -d. -f1-2)
 
 Name:		tesseract
-Version:	3.01
-Release:	2
+Version:	3.02.02
+Release:	1
 Summary:	A high-performance OCR engine
 URL:		http://code.google.com/p/tesseract-ocr/
 License:	Apache
 Group:		Graphics
-Source0:	%{name}-%{version}.tar.gz
-Source1:	tesseract-ocr-3.01.ara.tar.gz
-Source2:	tesseract-ocr-3.01.eng.tar.gz
-Source3:	tesseract-ocr-3.01.heb-com.tar.gz
-Source4:	tesseract-ocr-3.01.heb.tar.gz
-Source5:	tesseract-ocr-3.01.hin.tar.gz
-Source6:	tesseract-ocr-3.01.osd.tar.gz
-Source7:	tesseract-ocr-3.01.slk-frak.tar.gz
-Source8:	tesseract-ocr-3.01.tha.tar.gz
+Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
+Source1:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.eng.tar.gz
+Source2:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ukr.tar.gz
+Source3:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.tur.tar.gz
+Source4:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.tha.tar.gz
+Source5:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.tgl.tar.gz
+Source6:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.tel.tar.gz
+Source7:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.tam.tar.gz
+Source8:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.swe.tar.gz
+Source9:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.swa.tar.gz
+Source10:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.srp.tar.gz
+Source11:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.sqi.tar.gz
+Source12:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.spa_old.tar.gz
+Source13:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.spa.tar.gz
+Source14:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.slv.tar.gz
+Source15:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.slk.tar.gz
+Source16:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ron.tar.gz
+Source17:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.por.tar.gz
+Source18:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.pol.tar.gz
+Source19:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.nor.tar.gz
+Source20:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.nld.tar.gz
+Source21:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.msa.tar.gz
+Source22:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.mlt.tar.gz
+Source23:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.mkd.tar.gz
+Source24:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.mal.tar.gz
+Source25:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.lit.tar.gz
+Source26:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.lav.tar.gz
+Source27:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.kor.tar.gz
+Source28:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.kan.tar.gz
+Source29:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ita_old.tar.gz
+Source30:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ita.tar.gz
+Source31:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.isl.tar.gz
+Source32:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ind.tar.gz
+Source33:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.chr.tar.gz
+Source34:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.hun.tar.gz
+Source35:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.hrv.tar.gz
+Source36:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.hin.tar.gz
+Source37:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.heb.tar.gz
+Source38:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.glg.tar.gz
+Source39:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.frm.tar.gz
+Source40:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.frk.tar.gz
+Source41:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.fra.tar.gz
+Source42:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.fin.tar.gz
+Source43:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.eus.tar.gz
+Source44:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.est.tar.gz
+Source45:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.equ.tar.gz
+Source46:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.epo.tar.gz
+Source47:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.epo_alt.tar.gz
+Source48:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.enm.tar.gz
+Source49:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ell.tar.gz
+Source50:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.deu.tar.gz
+Source51:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.dan.tar.gz
+Source52:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ces.tar.gz
+Source53:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.cat.tar.gz
+Source54:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.bul.tar.gz
+Source55:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ben.tar.gz
+Source56:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.bel.tar.gz
+Source57:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.aze.tar.gz
+Source58:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.ara.tar.gz
+Source59:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.afr.tar.gz
+Source60:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.jpn.tar.gz
+Source61:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.chi_sim.tar.gz
+Source62:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.chi_tra.tar.gz
+Source63:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.grc.tar.gz
+Source64:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.rus.tar.gz
+Source65:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-%major.vie.tar.gz
+# Not released with 3.02
+Source66:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.osd.tar.gz
+Source67:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.heb-com.tar.gz
+Source68:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.slk-frak.tar.gz
 
-Source9:	bul.traineddata.gz
-Source10:	cat.traineddata.gz
-Source11:	ces.traineddata.gz
-Source12:	chi_sim.traineddata.gz
-Source13:	chi_tra.traineddata.gz
-Source14:	chr.traineddata.gz
-Source15:	dan-frak.traineddata.gz
-Source16:	dan.traineddata.gz
-Source17:	deu-frak.traineddata.gz
-Source18:	deu.traineddata.gz
-Source19:	ell.traineddata.gz
-#Source20:	eng.traineddata.gz
-Source21:	fin.traineddata.gz
-Source22:	fra.traineddata.gz
-Source23:	hun.traineddata.gz
-Source24:	ind.traineddata.gz
-Source25:	ita.traineddata.gz
-Source26:	jpn.traineddata.gz
-Source27:	kor.traineddata.gz
-Source28:	lav.traineddata.gz
-Source29:	lit.traineddata.gz
-Source30:	nld.traineddata.gz
-Source31:	nor.traineddata.gz
-Source32:	pol.traineddata.gz
-Source33:	por.traineddata.gz
-Source34:	ron.traineddata.gz
-Source35:	rus.traineddata.gz
-Source36:	slk.traineddata.gz
-Source37:	slv.traineddata.gz
-Source38:	spa.traineddata.gz
-Source39:	srp.traineddata.gz
-Source40:	swe-frak.traineddata.gz
-Source41:	swe.traineddata.gz
-Source42:	tgl.traineddata.gz
-Source43:	tur.traineddata.gz
-Source44:	ukr.traineddata.gz
-Source45:	vie.traineddata.gz
+Source100:	http://tesseract-ocr.googlecode.com/files/swe-frak.traineddata.gz
 
-Patch1:		tesseract-3.01-mdv-format-security.patch
-Patch2:		tesseract-3.01-upstream-buildfix.patch
+Patch1:		tesseract-format-security.patch
 Patch3:		tesseract-automake-1.13.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
@@ -129,6 +154,7 @@ images.
 %defattr(-,root,root)
 %{_includedir}/tesseract
 %{_libdir}/*.so
+%_libdir/pkgconfig/*.pc
 
 #-----------------------------------------------------------------
 
@@ -157,7 +183,11 @@ Tesseract data files required to recognize Hebrew community text.
 
 #-----------------------------------------------------------------
 
+%langdata afr Afrikaans
 %langdata ara Arabic
+%langdata aze Azerbaijani
+%langdata bel Belarusian
+%langdata ben Bengali
 %langdata bul Bulgarian
 %langdata cat Catalan
 %langdata ces Czech
@@ -170,17 +200,35 @@ Tesseract data files required to recognize Hebrew community text.
 %langdata deu German
 %langdata ell Greek
 %langdata eng English
+%langdata enm Middle English (1100-1500)
+%langdata epo Esperanto
+%langdata epo_alt Esperanto (alternative)
+%langdata equ Math/Equation
+%langdata est Estonian
+%langdata eus Basque
 %langdata fin Finnish
 %langdata fra French
+%langdata frk Frankish
+%langdata frm Middle French (1400-1600)
+%langdata glg Galician
+%langdata grc Ancient Greek
 %langdata heb Hebrew
 %langdata hin Hindi
+%langdata hrv Croatian
 %langdata hun Hungarian
 %langdata ind Indonesian
+%langdata isl Icelandic
 %langdata ita Italian
+%langdata ita_old Old Italian
 %langdata jpn Japanese
+%langdata kan Kannada
 %langdata kor Korean
 %langdata lav Latvian
 %langdata lit Lithuanian
+%langdata mal Malayalam
+%langdata mkd Macedonian
+%langdata mlt Maltese
+%langdata msa Malay
 %langdata nld Dutch
 %langdata nor Norwegian
 %langdata pol Polish
@@ -191,9 +239,14 @@ Tesseract data files required to recognize Hebrew community text.
 %langdata slk-frak Slovakian fraktur
 %langdata slv Slovenian
 %langdata spa Spanish
+%langdata spa_old Old Spanish
+%langdata sqi Albanian
 %langdata srp Serbian latin
+%langdata swa Swahili
 %langdata swe-frak Swedish fraktur
 %langdata swe Swedish
+%langdata tam Tamil
+%langdata tel Telugu
 %langdata tgl Tagalog
 %langdata tha Thai
 %langdata tur Turkish
@@ -201,15 +254,19 @@ Tesseract data files required to recognize Hebrew community text.
 %langdata vie Vietnamese
 
 %prep
-%setup -q -b1 -b2 -b3 -b4 -b5 -b6 -b7 -b8
+%setup -q -b1 -b2 -b3 -b4 -b5 -b6 -b7 -b8 -b9 -b10 -b11 -b12 -b13 -b14 -b15 -b16 -b17 -b18 -b19 -b20 -b21 -b22 -b23 -b24 -b25 -b26 -b27 -b28 -b29 -b30 -b31 -b32 -b33 -b34 -b35 -b36 -b37 -b38 -b39 -b40 -b41 -b42 -b43 -b44 -b45 -b46 -b47 -b48 -b49 -b50 -b51 -b52 -b53 -b54 -b55 -b56 -b57 -b58 -b59 -b60 -b61 -b62 -b63 -b64 -b65 -b66 -b67 -b68
 mv ../tesseract-ocr/tessdata/* ./tessdata/
 rm -rf ../tesseract-ocr
 %apply_patches
 
-for archive in %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} %{SOURCE36} %{SOURCE37} %{SOURCE38} %{SOURCE39} %{SOURCE40} %{SOURCE41} %{SOURCE42} %{SOURCE43} %{SOURCE44} %{SOURCE45}
-do
-filename=`echo $archive | sed -e 's|^.*/||;s|.gz$||'`
-gzip -cd $archive > ./tessdata/$filename
+for archive in %SOURCE100; do
+	filename=`echo $archive | sed -e 's|^.*/||;s|.gz$||'`
+	if [ -e ./tessdata/$filename ]; then
+		echo "FIXME: Check for duplicate: $filename"
+		read
+	else
+		gzip -cd $archive > ./tessdata/$filename
+	fi
 done
 
 %build
