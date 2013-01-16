@@ -68,6 +68,7 @@ Source45:	vie.traineddata.gz
 
 Patch1:		tesseract-3.01-mdv-format-security.patch
 Patch2:		tesseract-3.01-upstream-buildfix.patch
+Patch3:		tesseract-automake-1.13.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	leptonica-devel
@@ -203,8 +204,7 @@ Tesseract data files required to recognize Hebrew community text.
 %setup -q -b1 -b2 -b3 -b4 -b5 -b6 -b7 -b8
 mv ../tesseract-ocr/tessdata/* ./tessdata/
 rm -rf ../tesseract-ocr
-%patch1 -p1
-%patch2 -p1
+%apply_patches
 
 for archive in %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} %{SOURCE36} %{SOURCE37} %{SOURCE38} %{SOURCE39} %{SOURCE40} %{SOURCE41} %{SOURCE42} %{SOURCE43} %{SOURCE44} %{SOURCE45}
 do
@@ -213,6 +213,7 @@ gzip -cd $archive > ./tessdata/$filename
 done
 
 %build
+mkdir m4
 ./autogen.sh
 %configure2_5x --disable-static
 %make 
