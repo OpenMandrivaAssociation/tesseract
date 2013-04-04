@@ -92,7 +92,6 @@ Source68:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.slk-frak.
 
 Source100:	http://tesseract-ocr.googlecode.com/files/swe-frak.traineddata.gz
 
-Patch1:		tesseract-3.01-mdv-format-security.patch
 Patch3:		tesseract-automake-1.13.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
