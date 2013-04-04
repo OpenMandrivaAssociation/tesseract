@@ -91,7 +91,7 @@ Source67:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.heb-com.t
 Source68:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.slk-frak.tar.gz
 
 Source100:	http://tesseract-ocr.googlecode.com/files/swe-frak.traineddata.gz
-
+Patch2:		tesseract-3.02.02-strfmt.patch
 Patch3:		tesseract-automake-1.13.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
