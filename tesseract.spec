@@ -1,11 +1,14 @@
 %define langdata() \
 %package %{1}\
 Group:		Graphics \
-Summary:        %{2}%{?3: (%3)} language data for Tesseract \
+Summary:        %{3}%{?4: (%4)} language data for Tesseract \
 Requires:       tesseract >= 3.00 \
+# Add require on lang locales; this will force urpmi to prefer
+# appropriate language data when choosing among the set of tesseract-* packages
+Requires:       locales-%{2} \
 Provides:       tesseract-language \
 %description %{1} \
-Tesseract data files required to recognize %{?3:%3 }%{2} text. \
+Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %files %{1} \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
@@ -14,7 +17,7 @@ Tesseract data files required to recognize %{?3:%3 }%{2} text. \
 
 Name:		tesseract
 Version:	3.02.02
-Release:	1
+Release:	2
 Summary:	A high-performance OCR engine
 URL:		http://code.google.com/p/tesseract-ocr/
 License:	Apache
@@ -182,75 +185,75 @@ Tesseract data files required to recognize Hebrew community text.
 
 #-----------------------------------------------------------------
 
-%langdata afr Afrikaans
-%langdata ara Arabic
+%langdata afr af Afrikaans
+%langdata ara ar Arabic
 %langdata aze Azerbaijani
-%langdata bel Belarusian
-%langdata ben Bengali
-%langdata bul Bulgarian
-%langdata cat Catalan
-%langdata ces Czech
-%langdata chi_sim Chinese simplified
-%langdata chi_tra Chinese traditional
-%langdata chr Cherokee
-%langdata dan-frak Danish fraktur
-%langdata dan Danish
-%langdata deu-frak German fraktur
-%langdata deu German
-%langdata ell Greek
-%langdata eng English
-%langdata enm Middle English (1100-1500)
-%langdata epo Esperanto
-%langdata epo_alt Esperanto (alternative)
-%langdata equ Math/Equation
-%langdata est Estonian
-%langdata eus Basque
-%langdata fin Finnish
-%langdata fra French
-%langdata frk Frankish
-%langdata frm Middle French (1400-1600)
-%langdata glg Galician
-%langdata grc Ancient Greek
-%langdata heb Hebrew
-%langdata hin Hindi
-%langdata hrv Croatian
-%langdata hun Hungarian
-%langdata ind Indonesian
-%langdata isl Icelandic
-%langdata ita Italian
-%langdata ita_old Old Italian
-%langdata jpn Japanese
-%langdata kan Kannada
-%langdata kor Korean
-%langdata lav Latvian
-%langdata lit Lithuanian
-%langdata mal Malayalam
-%langdata mkd Macedonian
-%langdata mlt Maltese
-%langdata msa Malay
-%langdata nld Dutch
-%langdata nor Norwegian
-%langdata pol Polish
-%langdata por Portuguese
-%langdata ron Romanian
-%langdata rus Russian
-%langdata slk Slovakian
-%langdata slk-frak Slovakian fraktur
-%langdata slv Slovenian
-%langdata spa Spanish
-%langdata spa_old Old Spanish
-%langdata sqi Albanian
-%langdata srp Serbian latin
-%langdata swa Swahili
-%langdata swe-frak Swedish fraktur
-%langdata swe Swedish
-%langdata tam Tamil
-%langdata tel Telugu
-%langdata tgl Tagalog
-%langdata tha Thai
-%langdata tur Turkish
-%langdata ukr Ukrainian
-%langdata vie Vietnamese
+%langdata bel be Belarusian
+%langdata ben bn Bengali
+%langdata bul br Bulgarian
+%langdata cat ca Catalan
+%langdata ces cs Czech
+%langdata chi_sim zh Chinese simplified
+%langdata chi_tra zh Chinese traditional
+%langdata chr en Cherokee
+%langdata dan-frak da Danish fraktur
+%langdata dan da Danish
+%langdata deu-frak de German fraktur
+%langdata deu de German
+%langdata ell el Greek
+%langdata eng en English
+%langdata enm en Middle English (1100-1500)
+%langdata epo eo Esperanto
+%langdata epo_alt eo Esperanto (alternative)
+%langdata equ en Math/Equation
+%langdata est et Estonian
+%langdata eus eu Basque
+%langdata fin fi Finnish
+%langdata fra fr French
+%langdata frk fr Frankish
+%langdata frm fr Middle French (1400-1600)
+%langdata glg gl Galician
+%langdata grc el Ancient Greek
+%langdata heb he Hebrew
+%langdata hin hi Hindi
+%langdata hrv hr Croatian
+%langdata hun hu Hungarian
+%langdata ind id Indonesian
+%langdata isl is Icelandic
+%langdata ita it Italian
+%langdata ita_old it Old Italian
+%langdata jpn ja Japanese
+%langdata kan kn Kannada
+%langdata kor ko Korean
+%langdata lav lv Latvian
+%langdata lit lt Lithuanian
+%langdata mal ml Malayalam
+%langdata mkd mk Macedonian
+%langdata mlt mt Maltese
+%langdata msa ms Malay
+%langdata nld nl Dutch
+%langdata nor no Norwegian
+%langdata pol pl Polish
+%langdata por pt Portuguese
+%langdata ron ro Romanian
+%langdata rus ru Russian
+%langdata slk sk Slovakian
+%langdata slk-frak sk Slovakian fraktur
+%langdata slv sl Slovenian
+%langdata spa es Spanish
+%langdata spa_old es Old Spanish
+%langdata sqi sq Albanian
+%langdata srp st Serbian latin
+%langdata swa sw Swahili
+%langdata swe-frak sv Swedish fraktur
+%langdata swe sv Swedish
+%langdata tam ta Tamil
+%langdata tel te Telugu
+%langdata tgl en Tagalog
+%langdata tha th Thai
+%langdata tur tr Turkish
+%langdata ukr uk Ukrainian
+%langdata vie vi Vietnamese
 
 %prep
 %setup -q -b1 -b2 -b3 -b4 -b5 -b6 -b7 -b8 -b9 -b10 -b11 -b12 -b13 -b14 -b15 -b16 -b17 -b18 -b19 -b20 -b21 -b22 -b23 -b24 -b25 -b26 -b27 -b28 -b29 -b30 -b31 -b32 -b33 -b34 -b35 -b36 -b37 -b38 -b39 -b40 -b41 -b42 -b43 -b44 -b45 -b46 -b47 -b48 -b49 -b50 -b51 -b52 -b53 -b54 -b55 -b56 -b57 -b58 -b59 -b60 -b61 -b62 -b63 -b64 -b65 -b66 -b67 -b68
