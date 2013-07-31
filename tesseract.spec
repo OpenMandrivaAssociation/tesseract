@@ -3,8 +3,6 @@
 Group:		Graphics \
 Summary:        %{3}%{?4: (%4)} language data for Tesseract \
 Requires:       tesseract >= 3.00 \
-# Add require on lang locales; this will force urpmi to prefer
-# appropriate language data when choosing among the set of tesseract-* packages
 Requires:       locales-%{2} \
 Provides:       tesseract-language \
 %description %{1} \
