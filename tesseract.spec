@@ -14,8 +14,8 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %define major %(echo %version |cut -d. -f1-2)
 
 Name:		tesseract
-Version:	3.02.02
-Release:	2
+Version:	3.02.03
+Release:	0.svn866.1
 Summary:	A high-performance OCR engine
 URL:		http://code.google.com/p/tesseract-ocr/
 License:	Apache
@@ -93,7 +93,6 @@ Source68:	http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.slk-frak.
 
 Source100:	http://tesseract-ocr.googlecode.com/files/swe-frak.traineddata.gz
 Patch2:		tesseract-3.02.02-strfmt.patch
-Patch3:		tesseract-automake-1.13.patch
 BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	leptonica-devel
@@ -185,7 +184,7 @@ Tesseract data files required to recognize Hebrew community text.
 
 %langdata afr af Afrikaans
 %langdata ara ar Arabic
-%langdata aze Azerbaijani
+%langdata aze az Azerbaijani
 %langdata bel be Belarusian
 %langdata ben bn Bengali
 %langdata bul br Bulgarian
