@@ -15,7 +15,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 
 Name:		tesseract
 Version:	3.02.03
-Release:	0.svn866.1
+Release:	0.svn866.2
 Summary:	A high-performance OCR engine
 URL:		http://code.google.com/p/tesseract-ocr/
 License:	Apache
@@ -173,6 +173,7 @@ Data files required to recognize text orintation and scripts.
 Group:          Graphics
 Summary:        Hebrew (community) language data for Tesseract
 Requires:       tesseract >= 3.00
+Requires:	locales-he
 Provides:       tesseract-language
 %description heb-com
 Tesseract data files required to recognize Hebrew community text.
