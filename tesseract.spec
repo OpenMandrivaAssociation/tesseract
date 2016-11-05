@@ -24,7 +24,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %bcond_with    scrollview
 %bcond_without training
 
-Summary:	A high-performance OCR engine
+Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
 Release:	0
@@ -47,6 +47,7 @@ BuildRequires:	doxygen
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(icu-uc)
 BuildRequires:	pkgconfig(pango)
+BuildRequires:	pkgconfig(pangocairo)
 %endif
 %if %{with scrollview}
 BuildRequires:	java-headless
