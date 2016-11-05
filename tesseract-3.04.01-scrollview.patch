@@ -1,0 +1,62 @@
+--- tesseract-3.04.01/java/Makefile.am.orig
++++ tesseract-3.04.01/java/Makefile.am
+@@ -1,5 +1,5 @@
+ SUBDIRS = com
+-scrollview_path = @datadir@/tessdata
++scrollview_path = @scrollviewpath@
+ 
+ JAVAC = javac
+ JAR = jar
+@@ -36,10 +36,10 @@
+ 	com/google/scrollview/ScrollView.class
+ 
+ SCROLLVIEW_LIBS = \
+-	$(srcdir)/piccolo2d-core-3.0.jar \
+-	$(srcdir)/piccolo2d-extras-3.0.jar
++	piccolo2d-core \
++	piccolo2d-extras
+ 
+-CLASSPATH = $(srcdir)/piccolo2d-core-3.0.jar:$(srcdir)/piccolo2d-extras-3.0.jar
++CLASSPATH = `build-classpath $(SCROLLVIEW_LIBS)`
+ 
+ ScrollView.jar : $(SCROLLVIEW_CLASSES)
+ 	$(JAR) cfm $@ Manifest.txt com/google/scrollview/*.class \
+@@ -48,14 +48,14 @@
+ $(SCROLLVIEW_CLASSES) : $(SCROLLVIEW_FILES)
+ 	$(JAVAC) -encoding UTF8 -sourcepath $(srcdir) -classpath $(CLASSPATH) $(SCROLLVIEW_FILES) -d $(builddir)
+ 
+-fetch-jars :
+-	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-core/3.0/piccolo2d-core-3.0.jar > piccolo2d-core-3.0.jar
+-	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-extras/3.0/piccolo2d-extras-3.0.jar > piccolo2d-extras-3.0.jar
++#fetch-jars :
++#	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-core/3.0/piccolo2d-core-3.0.jar > piccolo2d-core-3.0.jar
++#	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-extras/3.0/piccolo2d-extras-3.0.jar > piccolo2d-extras-3.0.jar
+ 
+ .PHONY: install-jars
+ install-jars : ScrollView.jar
+ 	@if [ ! -d  $(scrollview_path) ]; then mkdir -p $(scrollview_path); fi;
+-	$(INSTALL) -m 644 $(SCROLLVIEW_LIBS) $(scrollview_path);
++#	$(INSTALL) -m 644 $(SCROLLVIEW_LIBS) $(scrollview_path);
+ 	$(INSTALL) -m 644 ScrollView.jar $(scrollview_path);
+ 	@echo "Don't forget to set environment variable SCROLLVIEW_PATH to $(scrollview_path)";
+ 
+--- tesseract-3.04.01/viewer/svutil.cpp.orig
++++ tesseract-3.04.01/viewer/svutil.cpp
+@@ -300,7 +300,7 @@
+ 
+ #else
+   const char* cmd_template = "-c \"trap 'kill %%1' 0 1 2 ; java "
+-      "-Xms1024m -Xmx2048m -jar %s/ScrollView.jar"
++      "-Xms1024m -Xmx2048m -cp \"%s/piccolo2d-core.jar:%s/piccolo2d-extras.jar\" -jar %s/ScrollView.jar"
+       " & wait\"";
+ #endif
+   int cmdlen = strlen(cmd_template) + 4*strlen(scrollview_path.c_str()) + 1;
+@@ -409,7 +409,7 @@
+ #undef _XSTR
+ #undef _STR
+ #else
+-      scrollview_path = ".";
++      scrollview_path = "/usr/share/java";
+ #endif
+     }
+     const char *prog = ScrollViewProg();
