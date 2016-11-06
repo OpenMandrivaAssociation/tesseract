@@ -27,7 +27,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	0
+Release:	1
 URL:		https://github.com/tesseract-ocr/%{name}
 License:	ASL 2.0
 Group:		Graphics
@@ -90,7 +90,6 @@ Group:		System/Libraries
 %name library.
 
 %files -n %{libtesseract}
-%defattr(-,root,root,-)
 %{_libdir}/libtesseract*.so.%{tesseract_major}*
 
 #-----------------------------------------------------------------
