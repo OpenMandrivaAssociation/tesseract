@@ -158,7 +158,7 @@ Data files required to recognize text orientation and scripts.
 %langdata dan_frak da "Danish (Fraktur)"
 %langdata deu de German
 %langdata deu_frak de "German (Fraktur)"
-%langdata dzo Dzongkha
+%langdata dzo dz Dzongkha
 %langdata ell el "Modern Greek (1453-)"
 %langdata eng en English
 %langdata enm en "Middle English (1100-1500)"
