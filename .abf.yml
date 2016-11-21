@@ -1,6 +1,5 @@
 removed_sources:
   tesseract-3.02.02.tar.gz: 0a6194c9567220b6ad39f2f680ef1282e3ef7f9f
-sources:
   swe-frak.traineddata.gz: 22220ad4303ebe290e4e71170e96b488e81a7f1a
   tesseract-3.02.03.tar.gz: 8c9f7d59fa2e19474ed44585299d3f4d1abd1dee
   tesseract-ocr-3.01.heb-com.tar.gz: d99e1192be540031f4bd30c7faaf759ddec1edee
@@ -71,3 +70,6 @@ sources:
   tesseract-ocr-3.02.tur.tar.gz: 017c11a1630ad96f600a863803a892aeadaa34fb
   tesseract-ocr-3.02.ukr.tar.gz: 729a2bd1a2cf81c314b8b0f2057260019f056149
   tesseract-ocr-3.02.vie.tar.gz: 9ab987ff577f1e1c536000d97cf6247f44ef8fdd
+sources:
+  3.04.01.tar.gz: 359ffc1925f0270ca100a2b4c1d3b41f4b23701d
+  3.04.00.tar.gz: 6ea24cccf0e823da98589ccc75d51f0950618236
