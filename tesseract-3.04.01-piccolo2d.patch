@@ -1,0 +1,66 @@
+--- tesseract-3.04.01/java/com/google/scrollview/ui/SVWindow.java.orig
++++ tesseract-3.04.01/java/com/google/scrollview/ui/SVWindow.java
+@@ -17,14 +17,14 @@
+ import com.google.scrollview.ui.SVMenuBar;
+ import com.google.scrollview.ui.SVPopupMenu;
+ 
+-import org.piccolo2d.PCamera;
+-import org.piccolo2d.PCanvas;
+-import org.piccolo2d.PLayer;
+-import org.piccolo2d.extras.swing.PScrollPane;
+-import org.piccolo2d.nodes.PImage;
+-import org.piccolo2d.nodes.PPath;
+-import org.piccolo2d.nodes.PText;
+-import org.piccolo2d.util.PPaintContext;
++import edu.umd.cs.piccolo.PCamera;
++import edu.umd.cs.piccolo.PCanvas;
++import edu.umd.cs.piccolo.PLayer;
++import edu.umd.cs.piccolox.swing.PScrollPane;
++import edu.umd.cs.piccolo.nodes.PImage;
++import edu.umd.cs.piccolo.nodes.PPath;
++import edu.umd.cs.piccolo.nodes.PText;
++import edu.umd.cs.piccolo.util.PPaintContext;
+ 
+ import java.awt.BasicStroke;
+ import java.awt.BorderLayout;
+--- tesseract-3.04.01/java/com/google/scrollview/ui/SVImageHandler.java.orig
++++ tesseract-3.04.01/java/com/google/scrollview/ui/SVImageHandler.java
+@@ -10,7 +10,7 @@
+ 
+ package com.google.scrollview.ui;
+ 
+-import org.piccolo2d.nodes.PImage;
++import edu.umd.cs.piccolo.nodes.PImage;
+ 
+ import java.io.BufferedReader;
+ import java.io.ByteArrayInputStream;
+--- tesseract-3.04.01/java/com/google/scrollview/events/SVEventHandler.java.orig
++++ tesseract-3.04.01/java/com/google/scrollview/events/SVEventHandler.java
+@@ -15,11 +15,11 @@
+ import com.google.scrollview.events.SVEventType;
+ import com.google.scrollview.ui.SVWindow;
+ 
+-import org.piccolo2d.PCamera;
+-import org.piccolo2d.PNode;
+-import org.piccolo2d.event.PBasicInputEventHandler;
+-import org.piccolo2d.event.PInputEvent;
+-import org.piccolo2d.nodes.PPath;
++import edu.umd.cs.piccolo.PCamera;
++import edu.umd.cs.piccolo.PNode;
++import edu.umd.cs.piccolo.event.PBasicInputEventHandler;
++import edu.umd.cs.piccolo.event.PInputEvent;
++import edu.umd.cs.piccolo.nodes.PPath;
+ 
+ import java.awt.Color;
+ import java.awt.event.ActionEvent;
+--- tesseract-3.04.01/java/com/google/scrollview/ScrollView.java.orig
++++ tesseract-3.04.01/java/com/google/scrollview/ScrollView.java
+@@ -13,7 +13,7 @@
+ import com.google.scrollview.events.SVEvent;
+ import com.google.scrollview.ui.SVImageHandler;
+ import com.google.scrollview.ui.SVWindow;
+-import org.piccolo2d.nodes.PImage;
++import edu.umd.cs.piccolo.nodes.PImage;
+ 
+ import java.io.BufferedReader;
+ import java.io.IOException;

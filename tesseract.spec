@@ -9,6 +9,7 @@ Requires:	locales-%{2} \
 Provides:	tesseract-language = %{version_tessdata} \
 %description %{1} \
 Tesseract data files required to recognize %{?4:%4 }%{3} text. \
+\
 %files %{1} \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
@@ -28,12 +29,13 @@ Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
 Release:	1
-URL:		https://github.com/tesseract-ocr/%{name}
 License:	ASL 2.0
 Group:		Graphics
+URL:		https://github.com/tesseract-ocr/%{name}
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}.tar.gz
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}.tar.gz
 Patch100:	%{name}-3.04.01-scrollview.patch
+Patch101:	%{name}-3.04.01-piccolo2d.patch
 
 BuildRequires:	autoconf
 BuildRequires:	jpeg-devel
@@ -253,6 +255,7 @@ Data files required to recognize text orientation and scripts.
 %setup -q -n %{name}-%{version} -a1
 %if %{with scrollview}
 %patch100 -p1 -b .orig
+%patch101 -p1 -b .orig
 %endif
 
 # Move tessdata in the right path
@@ -261,18 +264,12 @@ rm -rf ./tessdata-%{version_tessdata}/
 
 # debugger
 %if %{with scrollview}
-for f in java/com/google/scrollview/{.,events,ui}/*.java
-do
-	sed -i 's|org.piccolo2d|edu.umd.cs.piccolo|g' "$f"
-done
-sed -i 's|piccolo.extras.swing.PScrollPane;|piccolox.swing.PScrollPane;|' \
-	"java/com/google/scrollview/ui/SVWindow.java"
 sed -i 's|@scrollviewpath@|\$(DESTDIR)%{_javadir}|' java/Makefile.am
 %endif
 
 %build
 ./autogen.sh
-%configure --disable-static
+%configure
 %make
 
 # training binary
@@ -282,7 +279,7 @@ sed -i 's|@scrollviewpath@|\$(DESTDIR)%{_javadir}|' java/Makefile.am
 
 # debugger
 %if %{with scrollview}
-CLASSPATH=`build-classpath piccolo2d-core piccolo2d-extras` %make ScrollView.jar
+%make ScrollView.jar
 %endif
 
 # library documentation
@@ -313,4 +310,3 @@ for file in tessdata/*cube.* tessdata/*.traineddata
 do
 	install -m 0644 -D "$file" %{buildroot}%{_datadir}/tessdata
 done
-
