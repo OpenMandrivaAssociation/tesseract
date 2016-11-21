@@ -1,0 +1,70 @@
+--- tesseract-3.04.01/java/Makefile.am.orig
++++ tesseract-3.04.01/java/Makefile.am
+@@ -1,5 +1,5 @@
+ SUBDIRS = com
+-scrollview_path = @datadir@/tessdata
++scrollview_path = @scrollviewpath@
+ 
+ JAVAC = javac
+ JAR = jar
+@@ -36,10 +36,10 @@
+ 	com/google/scrollview/ScrollView.class
+ 
+ SCROLLVIEW_LIBS = \
+-	$(srcdir)/piccolo2d-core-3.0.jar \
+-	$(srcdir)/piccolo2d-extras-3.0.jar
++	piccolo2d-core \
++	piccolo2d-extras
+ 
+-CLASSPATH = $(srcdir)/piccolo2d-core-3.0.jar:$(srcdir)/piccolo2d-extras-3.0.jar
++CLASSPATH = `build-classpath $(SCROLLVIEW_LIBS)`
+ 
+ ScrollView.jar : $(SCROLLVIEW_CLASSES)
+ 	$(JAR) cfm $@ Manifest.txt com/google/scrollview/*.class \
+@@ -48,16 +48,16 @@
+ $(SCROLLVIEW_CLASSES) : $(SCROLLVIEW_FILES)
+ 	$(JAVAC) -encoding UTF8 -sourcepath $(srcdir) -classpath $(CLASSPATH) $(SCROLLVIEW_FILES) -d $(builddir)
+ 
+-fetch-jars :
+-	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-core/3.0/piccolo2d-core-3.0.jar > piccolo2d-core-3.0.jar
+-	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-extras/3.0/piccolo2d-extras-3.0.jar > piccolo2d-extras-3.0.jar
++#fetch-jars :
++#	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-core/3.0/piccolo2d-core-3.0.jar > piccolo2d-core-3.0.jar
++#	curl -L http://search.maven.org/remotecontent?filepath=org/piccolo2d/piccolo2d-extras/3.0/piccolo2d-extras-3.0.jar > piccolo2d-extras-3.0.jar
+ 
+ .PHONY: install-jars
+ install-jars : ScrollView.jar
+ 	@if [ ! -d  $(scrollview_path) ]; then mkdir -p $(scrollview_path); fi;
+-	$(INSTALL) -m 644 $(SCROLLVIEW_LIBS) $(scrollview_path);
++#	$(INSTALL) -m 644 $(SCROLLVIEW_LIBS) $(scrollview_path);
+ 	$(INSTALL) -m 644 ScrollView.jar $(scrollview_path);
+-	@echo "Don't forget to set environment variable SCROLLVIEW_PATH to $(scrollview_path)";
++#	@echo "Don't forget to set environment variable SCROLLVIEW_PATH to $(scrollview_path)";
+ 
+ uninstall:
+ 	rm -f $(scrollview_path)/*.jar
+--- tesseract-3.04.01/viewer/svutil.cpp.orig
++++ tesseract-3.04.01/viewer/svutil.cpp
+@@ -400,6 +400,8 @@
+ 
+   // If server is not there, we will start a new server as local child process.
+   if (connect(stream_, addr_info->ai_addr, addr_info->ai_addrlen) < 0) {
++    std::string scrollview_path = "/usr/share/java";
++/*
+     const char* scrollview_path = getenv("SCROLLVIEW_PATH");
+     if (scrollview_path == NULL) {
+ #ifdef SCROLLVIEW_PATH
+@@ -412,6 +414,7 @@
+       scrollview_path = ".";
+ #endif
+     }
++*/
+     const char *prog = ScrollViewProg();
+     std::string command = ScrollViewCommand(scrollview_path);
+     SVSync::StartProcess(prog, command.c_str());
+--- tesseract-3.04.01/java/Manifest.txt.orig
++++ tesseract-3.04.01/java/Manifest.txt
+@@ -1,2 +1,2 @@
+ Main-Class: com/google/scrollview/ScrollView
+-Class-Path: ScrollView.jar piccolo2d-core-3.0.jar piccolo2d-extras-3.0.jar
++Class-Path: ScrollView.jar piccolo2d-core.jar piccolo2d-extras.jar
