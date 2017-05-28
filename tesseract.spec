@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 3.04.01
+%define version_tesseract 3.05.00
 %define version_tessdata  3.04.00
 
 %define tesseract_major 3
@@ -70,7 +70,7 @@ available. The source code will read a binary, grey or color image
 and output text. 
 
 %files
-%doc AUTHORS COPYING NEWS README.md ReleaseNotes ChangeLog
+%doc AUTHORS COPYING NEWS README.md ChangeLog
 %{_bindir}/*
 %{_datadir}/tessdata
 %exclude %{_datadir}/tessdata/*cube.*
