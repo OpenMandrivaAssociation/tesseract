@@ -1,3 +1,5 @@
-sources:
-  3.04.00.tar.gz: 6ea24cccf0e823da98589ccc75d51f0950618236
+removed_sources:
   3.05.00.tar.gz: 93c036ce510a6ae40db4d2f30844d3dba1e68faa
+sources:
+  langdata-3.04.00.tar.gz: 6ea24cccf0e823da98589ccc75d51f0950618236
+  tesseract-3.05.01.tar.gz: a9a70bf84a597cb3c228d73c70a590e7b032b6ce

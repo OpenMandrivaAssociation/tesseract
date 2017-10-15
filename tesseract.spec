@@ -3,9 +3,9 @@
 Group:		Graphics \
 Summary:	%{3}%{?4: (%4)} language data for Tesseract \
 #Version:	%{version_tessdata} \
-#BuildArch:	noarch \
+BuildArch:	noarch \
 Requires:	tesseract >= %{version_tesseract} \
-Requires:	locales-%{2} \
+Requires:	locales%{?2:-%2} \
 Provides:	tesseract-language = %{version_tessdata} \
 %description %{1} \
 Tesseract data files required to recognize %{?4:%4 }%{3} text. \
@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 3.05.00
+%define version_tesseract 3.05.01
 %define version_tessdata  3.04.00
 
 %define tesseract_major 3
@@ -32,8 +32,8 @@ Release:	1
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
-Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}.tar.gz
-Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}.tar.gz
+Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
+Source1:	https://github.com/tesseract-ocr/langdata/archive/%{version_tessdata}/langdata-%{version_tessdata}.tar.gz
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
 
@@ -137,11 +137,11 @@ Data files required to recognize text orientation and scripts.
 
 # NOTE: names refer to doc/tesseract.1.asc
 %langdata afr af Afrikaans
-%langdata amh an Amharic
+%langdata amh am Amharic
 %langdata ara ar Arabic
 %langdata asm as Assamese
 %langdata aze az Azerbaijani
-%langdata aze_cyrl "Azerbaijani (Cyrilic)"
+%langdata aze_cyrl az Azerbaijani Cyrilic
 %langdata bel be Belarusian
 %langdata ben bn Bengali
 %langdata bod bo Tibetan
@@ -150,26 +150,27 @@ Data files required to recognize text orientation and scripts.
 %langdata cat ca "Catalan / Valencian"
 #NOTE: Cebuano has not ISO 639-1 two-letter code
 #      (https://en.wikipedia.org/wiki/Cebuano_language)
+#      This is not provided by glibc.
 %langdata ceb "" Cebuano
 %langdata ces cs Czech
-%langdata chi_sim zh "Chinese simplified"
-%langdata chi_tra zh "Chinese traditional"
+%langdata chi_sim zh Chinese simplified
+%langdata chi_tra zh Chinese traditional
 %langdata chr en Cherokee
 %langdata cym cy Welsh
 %langdata dan da Danish
-%langdata dan_frak da "Danish (Fraktur)"
+%langdata dan_frak da Danish Fraktur
 %langdata deu de German
-%langdata deu_frak de "German (Fraktur)"
+%langdata deu_frak de German Fraktur
 %langdata dzo dz Dzongkha
-%langdata ell el "Modern Greek (1453-)"
+%langdata ell el "Modern Greek (1453-today)"
 %langdata eng en English
 %langdata enm en "Middle English (1100-1500)"
 %langdata epo eo Esperanto
-#% langdata epo_alt eo Esperanto (alternative)
-%langdata equ en "Math (equation detection module)"
+#% langdata epo_alt eo Esperanto alternative
+%langdata equ en Math "equation detection module"
 %langdata est et Estonian
 %langdata eus eu Basque
-%langdata fas fa "Persian (Farsi)"
+%langdata fas fa Persian Farsi
 %langdata fin fi Finnish
 %langdata fra fr French
 %langdata frk fr Frankish
@@ -178,7 +179,7 @@ Data files required to recognize text orientation and scripts.
 %langdata glg gl Galician
 %langdata grc el "Ancient Greek (to 1453)"
 %langdata guj gu Gujarati
-%langdata hat ht "Haitian (Haitian Creole)"
+%langdata hat ht Haitian Creole
 %langdata heb he Hebrew
 %langdata hin hi Hindi
 %langdata hrv hr Croatian
@@ -187,19 +188,26 @@ Data files required to recognize text orientation and scripts.
 %langdata ind id Indonesian
 %langdata isl is Icelandic
 %langdata ita it Italian
-%langdata ita_old it "Old Italian"
-%langdata jav jav Javanese
+%langdata ita_old it Italian Old
+#NOTE: Javanese has several ISO 639-1 two-letter codes:
+#               jav jvn, jas, osi, tes, kaw
+#      (https://en.wikipedia.org/wiki/Cebuano_language)
+#      None of them are provided by glibc.
+%langdata jav "" Javanese
 %langdata jpn ja Japanese
 %langdata kan kn Kannada
 %langdata kat ka Georgian
-%langdata kat_old "Georgian Old"
+%langdata kat_old ka Georgian Old
 %langdata kaz kk Kazakh
 %langdata khm km "Central Khmer"
 %langdata kir ky "Kirghiz or Kyrgyz"
 %langdata kor ko Korean
 %langdata kur ku Kurdish
 %langdata lao lo Lao
-%langdata lat lat Latin
+#NOTE: Cebuano has "lat" as ISO 639-1 two-letter code
+#      (https://en.wikipedia.org/wiki/Cebuano_language)
+#      This is not provided by glibc.
+%langdata lat "" Latin
 %langdata lav lv Latvian
 %langdata lit lt Lithuanian
 %langdata mal ml Malayalam
@@ -209,7 +217,7 @@ Data files required to recognize text orientation and scripts.
 %langdata msa ms Malay
 %langdata mya my Burmese
 %langdata nep ne Nepali
-%langdata nld nl "Dutch (Flemish)"
+%langdata nld nl Dutch Flemish
 %langdata nor no Norwegian
 %langdata ori or Oriya
 %langdata pan pa "Panjabi or Punjabi"
@@ -221,33 +229,29 @@ Data files required to recognize text orientation and scripts.
 %langdata san sa Sanskrit
 %langdata sin si "Sinhala or Sinhalese"
 %langdata slk sk Slovakian
-%langdata slk_frak sk "Slovakian (Fraktur)"
+%langdata slk_frak sk Slovakian Fraktur
 %langdata slv sl Slovenian
-%langdata spa es "Spanish (Castilian)"
-%langdata spa_old es "Old Spanish (Castilian)"
+%langdata spa es Spanish Castilian
+%langdata spa_old es Spanish "Old Castilian"
 %langdata sqi sq Albanian
 %langdata srp sr Serbian
-#NOTE: Serbian latin has not ISO 639-1 two-letter code
-#      (https://en.wikipedia.org/wiki/ISO_639:sr)
-%langdata srp_latn sr-SP "Serbian (Latin)"
+%langdata srp_latn sr Serbian Latin
 %langdata swe sv Swedish
 %langdata swa sw Swahili
-#% langdata swe_frak sv "Swedish (Fraktur)"
-#NOTE: Syriac has not ISO 639-1 two-letter code
-#      (https://en.wikipedia.org/wiki/ISO_639:syr)
-%langdata syr ar_SY Syriac
+#% langdata swe_frak sv Swedish Fraktur
+%langdata syr ar Syriac
 %langdata tam ta Tamil
 %langdata tel te Telugu
 %langdata tgk tg Tajik
 %langdata tgl en Tagalog
 %langdata tha th Thai
-%langdata tir ti Tigrinya
+%langdata tir am Tigrinya
 %langdata tur tr Turkish
 %langdata uig ug "Uighur or Uyghur"
 %langdata ukr uk Ukrainian
 %langdata urd ur Urdu
 %langdata uzb uz Uzbek
-%langdata uzb_cyrl "Uzbek (Cyrillic)"
+%langdata uzb_cyrl uz Uzbek Cyrillic
 %langdata vie vi Vietnamese
 %langdata yid yi Yiddish
 
