@@ -3,9 +3,9 @@
 Group:		Graphics \
 Summary:	%{3}%{?4: (%4)} language data for Tesseract \
 #Version:	%{version_tessdata} \
-#BuildArch:	noarch \
+BuildArch:	noarch \
 Requires:	tesseract >= %{version_tesseract} \
-%{?2: Requires:	locales-%2}%{!?2: Requires:	locales} \
+Requires:	locales%{?2:-%2} \
 Provides:	tesseract-language = %{version_tessdata} \
 %description %{1} \
 Tesseract data files required to recognize %{?4:%4 }%{3} text. \
@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 3.05.00
+%define version_tesseract 3.05.01
 %define version_tessdata  3.04.00
 
 %define tesseract_major 3
@@ -32,8 +32,8 @@ Release:	1
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
-Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}.tar.gz
-Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}.tar.gz
+Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
+Source1:	https://github.com/tesseract-ocr/langdata/archive/%{version_tessdata}/langdata-%{version_tessdata}.tar.gz
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
 
