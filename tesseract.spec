@@ -40,6 +40,7 @@ Patch101:	%{name}-3.04.01-piccolo2d.patch
 BuildRequires:	autoconf
 BuildRequires:	asciidoc
 BuildRequires:	xsltproc
+BuildRequires:	docbook-style-xsl
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(libpng)
