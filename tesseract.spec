@@ -14,10 +14,10 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 3.05.01
+%define version_tesseract 5.0.0
 %define version_tessdata  3.04.00
 
-%define tesseract_major 3
+%define tesseract_major 5
 %define libtesseract %mklibname %name %tesseract_major
 %define devtesseract %mklibname %name -d
 
@@ -28,7 +28,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	4
+Release:	1
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
@@ -70,14 +70,12 @@ available. The source code will read a binary, grey or color image
 and output text. 
 
 %files
-%doc AUTHORS COPYING NEWS README.md ChangeLog
+%doc AUTHORS README.md ChangeLog
 %{_bindir}/*
 %{_datadir}/tessdata
 %exclude %{_datadir}/tessdata/*cube.*
 %exclude %{_datadir}/tessdata/*.traineddata
 %{_mandir}/man?/*
-%doc testing/eurotext.tif
-%doc testing/phototest.tif
 %if %{with scrollview}
 %{_javadir}/ScrollView.jar
 %endif
