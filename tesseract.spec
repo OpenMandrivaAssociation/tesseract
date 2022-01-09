@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 5.0.0
+%define version_tesseract 5.0.1
 %define version_tessdata  3.04.00
 
 %define tesseract_major 5
