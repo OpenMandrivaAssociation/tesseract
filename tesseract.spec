@@ -37,7 +37,7 @@ Source1:	https://github.com/tesseract-ocr/langdata/archive/%{version_tessdata}/l
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
 
-BuildRequires:	autoconf
+#BuildRequires:	autoconf
 BuildRequires:	asciidoc
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
