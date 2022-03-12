@@ -28,7 +28,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	1
+Release:	2
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
@@ -37,11 +37,10 @@ Source1:	https://github.com/tesseract-ocr/langdata/archive/%{version_tessdata}/l
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
 
-#BuildRequires:	autoconf
 BuildRequires:	asciidoc
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
-BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(lept) >= 1.71
@@ -80,7 +79,7 @@ and output text.
 %{_datadir}/tessdata
 %exclude %{_datadir}/tessdata/*cube.*
 %exclude %{_datadir}/tessdata/*.traineddata
-%{_mandir}/man?/*
+%doc %{_mandir}/man?/*
 %if %{with scrollview}
 %{_javadir}/ScrollView.jar
 %endif
@@ -88,11 +87,11 @@ and output text.
 #-----------------------------------------------------------------
 
 %package -n %{libtesseract}
-Summary:	%name support library
+Summary:	%{name} support library
 Group:		System/Libraries
 
 %description -n %{libtesseract}
-%name library.
+%{name} library.
 
 %files -n %{libtesseract}
 %{_libdir}/libtesseract*.so.%{tesseract_major}*
@@ -100,7 +99,7 @@ Group:		System/Libraries
 #-----------------------------------------------------------------
 
 %package devel
-Summary:	Development files from %name
+Summary:	Development files from %{name}
 Group:		Development/C++
 Requires:	%{libtesseract} = %{version}-%{release}
 Provides:	%{devtesseract} = %{version}-%{release}
@@ -277,43 +276,43 @@ sed -i 's|@scrollviewpath@|\$(DESTDIR)%{_javadir}|' java/Makefile.am
 %build
 ./autogen.sh
 %configure
-%make
+%make_build
 
 # training binary
 %if %{with training}
-%make training
+%make_build training
 %endif
 
 # debugger
 %if %{with scrollview}
-%make ScrollView.jar
+%make_build ScrollView.jar
 %endif
 
 # library documentation
 %if %{with libdoc}
-%make doc
+%make_build doc
 %endif
 
 %install
-%makeinstall_std
+%make_install
 
 # training binary
 %if %{with training}
-%makeinstall_std training-install
+%make_install training-install
 %endif
 
 # debugger
 %if %{with scrollview}
-%makeinstall_std install-jars
+%make_install install-jars
 %endif
 
 # library documentation
 %if %{with libdoc}
-%makeinstall_std doc
+%make_install doc
 %endif
 
 # language data
 for file in tessdata/*cube.* tessdata/*.traineddata
 do
-	install -m 0644 -D "$file" %{buildroot}%{_datadir}/tessdata
+    install -m 0644 -D "$file" %{buildroot}%{_datadir}/tessdata
 done
