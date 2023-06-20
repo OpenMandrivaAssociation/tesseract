@@ -66,6 +66,12 @@ Requires:	java-headless
 Requires:	piccolo2d
 %endif
 
+%ifarch %{x86_64}
+# FIXME why is this needed? We only know THAT it is...
+# (absence of /lib/libc.so.6 causes a build failure)
+BuildRequires:	libc6
+%endif
+
 %description
 The Tesseract OCR engine was one of the top 3 engines in the 1995 
 UNLV Accuracy test. Since then it has had little work done on it, 
@@ -267,8 +273,8 @@ Data files required to recognize text orientation and scripts.
 %endif
 
 # Move tessdata in the right path
-mv ./tessdata-%{version_tessdata}/* ./tessdata/
-rm -rf ./tessdata-%{version_tessdata}/
+mv ./langdata-%{version_tessdata}/* ./tessdata/
+rm -rf ./langdata-%{version_tessdata}/
 
 # debugger
 %if %{with scrollview}
