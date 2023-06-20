@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 5.2.0
+%define version_tesseract 5.3.1
 %define version_tessdata  3.04.00
 
 %define tesseract_major 5
@@ -28,7 +28,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	3
+Release:	1
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
@@ -150,10 +150,11 @@ Data files required to recognize text orientation and scripts.
 %langdata bos bs Bosnian
 %langdata bul bg Bulgarian
 %langdata cat ca "Catalan / Valencian"
-#NOTE: Cebuano has not ISO 639-1 two-letter code
+#NOTE: Cebuano doesn't have an ISO 639-1 two-letter code.
+#      ISO-639-2 code is ceb.
 #      (https://en.wikipedia.org/wiki/Cebuano_language)
 #      This is not provided by glibc.
-%langdata ceb "" Cebuano
+%langdata ceb en Cebuano
 %langdata ces cs Czech
 %langdata chi_sim zh Chinese simplified
 %langdata chi_tra zh Chinese traditional
@@ -191,11 +192,12 @@ Data files required to recognize text orientation and scripts.
 %langdata isl is Icelandic
 %langdata ita it Italian
 %langdata ita_old it Italian Old
-#NOTE: Javanese has several ISO 639-1 two-letter codes:
+#NOTE: Javanese has several ISO 639-2 three-letter codes:
 #               jav jvn, jas, osi, tes, kaw
-#      (https://en.wikipedia.org/wiki/Cebuano_language)
+#      (https://en.wikipedia.org/wiki/Javanese_language)
 #      None of them are provided by glibc.
-%langdata jav "" Javanese
+#      Indonesia is related, so let's use locales-id
+%langdata jav id Javanese
 %langdata jpn ja Japanese
 %langdata kan kn Kannada
 %langdata kat ka Georgian
@@ -206,10 +208,10 @@ Data files required to recognize text orientation and scripts.
 %langdata kor ko Korean
 %langdata kur ku Kurdish
 %langdata lao lo Lao
-#NOTE: Cebuano has "lat" as ISO 639-1 two-letter code
-#      (https://en.wikipedia.org/wiki/Cebuano_language)
+#NOTE: Latin has "la" as ISO 639-1 two-letter code
+#      (https://en.wikipedia.org/wiki/Latin)
 #      This is not provided by glibc.
-%langdata lat "" Latin
+%langdata lat en Latin
 %langdata lav lv Latvian
 %langdata lit lt Lithuanian
 %langdata mal ml Malayalam
