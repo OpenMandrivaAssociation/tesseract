@@ -11,7 +11,7 @@ Provides:	tesseract-language = %{version_tessdata} \
 Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 \
 %files %{1} \
-%{_datadir}/tessdata/%{1}.* \
+%{_datadir}/tesseract/tessdata/%{1}.* \
 %{nil}
 
 %define version_tesseract 5.3.4
@@ -34,9 +34,11 @@ Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}/tessdata-%{version_tessdata}.tar.gz
+Patch1:		tesseract_cmake.patch
+%if %{with scrollview}
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
-
+%endif
 BuildRequires:	cmake
 BuildRequires:	asciidoc
 BuildRequires:	xsltproc
@@ -83,8 +85,8 @@ and output text.
 %files
 %doc AUTHORS README.md ChangeLog
 %{_bindir}/*
-%{_datadir}/tessdata
-%exclude %{_datadir}/tessdata/*.traineddata
+%{_datadir}/tesseract
+%exclude %{_datadir}/tesseract/tessdata/*.traineddata
 %doc %{_mandir}/man?/*
 %if %{with scrollview}
 %{_javadir}/ScrollView.jar
@@ -124,6 +126,7 @@ images.
 %defattr(-,root,root)
 %{_includedir}/tesseract
 %{_libdir}/*.so
+%{_libdir}/*.a
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/cmake/%{name}
 %if %{with libdoc}
@@ -139,7 +142,7 @@ Summary:	Orientation & script detection data pack for tesseract
 Data files required to recognize text orientation and scripts.
 
 %files osd
-%{_datadir}/tessdata/osd.*
+%{_datadir}/tesseract/tessdata/osd.*
 
 #-----------------------------------------------------------------
 
@@ -265,11 +268,7 @@ Data files required to recognize text orientation and scripts.
 %langdata yid yi Yiddish
 
 %prep
-%setup -q -n %{name}-%{version} -a1
-%if %{with scrollview}
-%patch100 -p1 -b .orig
-%patch101 -p1 -b .orig
-%endif
+%autosetup -p1 -n %{name}-%{version} -a1
 
 # Move tessdata in the right path
 rm -rf ./tessdata-%{version_tessdata}/{tessconfigs,configs,pdf.ttf}
@@ -303,5 +302,5 @@ cp -a doc/*.5 %{buildroot}%{_mandir}/man5/
 # language data
 for file in tessdata/*.traineddata
 do
-    install -m 0644 -D "$file" %{buildroot}%{_datadir}/tessdata
+    install -m 0644 -D "$file" %{buildroot}%{_datadir}/tesseract/tessdata/
 done
