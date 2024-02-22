@@ -18,7 +18,8 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %define version_tessdata  4.1.0
 
 %define tesseract_major 5
-%define libtesseract %mklibname %name %tesseract_major
+%define oldlibtesseract %mklibname %name 5
+%define libtesseract %mklibname %name
 %define devtesseract %mklibname %name -d
 
 %bcond_without libdoc
@@ -28,13 +29,14 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	1
+Release:	2
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}/tessdata-%{version_tessdata}.tar.gz
 Patch1:		tesseract_cmake.patch
+Patch2:		tesseract-5.3.4-fix-soversion.patch
 %if %{with scrollview}
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
@@ -97,6 +99,7 @@ and output text.
 %package -n %{libtesseract}
 Summary:	%{name} support library
 Group:		System/Libraries
+%rename %{oldlibtesseract}
 
 %description -n %{libtesseract}
 %{name} library.

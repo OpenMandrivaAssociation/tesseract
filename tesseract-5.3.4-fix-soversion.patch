@@ -1,0 +1,12 @@
+diff -up tesseract-5.3.4/CMakeLists.txt.omv~ tesseract-5.3.4/CMakeLists.txt
+--- tesseract-5.3.4/CMakeLists.txt.omv~	2024-02-22 15:13:10.264763734 +0100
++++ tesseract-5.3.4/CMakeLists.txt	2024-02-22 15:13:18.064837202 +0100
+@@ -851,7 +851,7 @@ set_target_properties(
+                           ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
+ set_target_properties(
+   libtesseract PROPERTIES SOVERSION
+-                          ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
++                          ${VERSION_MAJOR})
+ 
+ if(MINGW)
+   set_target_properties(libtesseract PROPERTIES SUFFIX "-${VERSION_MAJOR}${VERSION_MINOR}${CMAKE_SHARED_LIBRARY_SUFFIX}")
