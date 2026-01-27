@@ -11,10 +11,10 @@ Provides:	tesseract-language = %{version_tessdata} \
 Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 \
 %files %{1} \
-%{_datadir}/tesseract/tessdata/%{1}.* \
+%{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 5.3.4
+%define version_tesseract 5.5.2
 %define version_tessdata  4.1.0
 
 %define tesseract_major 5
@@ -29,14 +29,13 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 Summary:	An high-performance OCR engine
 Name:		tesseract
 Version:	%{version_tesseract}
-Release:	7
+Release:	1
 License:	ASL 2.0
 Group:		Graphics
 URL:		https://github.com/tesseract-ocr/%{name}
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}/tessdata-%{version_tessdata}.tar.gz
-Patch1:		tesseract_cmake.patch
-Patch2:		tesseract-5.3.4-fix-soversion.patch
+#Patch1:		tesseract_cmake.patch
 %if %{with scrollview}
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
@@ -77,6 +76,10 @@ Requires:	piccolo2d
 BuildRequires:	libc6
 %endif
 
+BuildSystem:	cmake
+BuildOption:	-DCMAKE_INSTALL_LIBDIR=%{_lib}
+BuildOption:	-DTESSDATA_PREFIX=%{_datadir}/tessdata
+
 %description
 The Tesseract OCR engine was one of the top 3 engines in the 1995 
 UNLV Accuracy test. Since then it has had little work done on it, 
@@ -87,8 +90,9 @@ and output text.
 %files
 %doc AUTHORS README.md ChangeLog
 %{_bindir}/*
-%{_datadir}/tesseract
-%exclude %{_datadir}/tesseract/tessdata/*.traineddata
+%{_datadir}/tessdata
+%exclude %{_datadir}/tessdata/osd.*
+%exclude %{_datadir}/tessdata/*.traineddata
 %doc %{_mandir}/man?/*
 %if %{with scrollview}
 %{_javadir}/ScrollView.jar
@@ -129,7 +133,6 @@ images.
 %defattr(-,root,root)
 %{_includedir}/tesseract
 %{_libdir}/*.so
-%{_libdir}/*.a
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/cmake/%{name}
 %if %{with libdoc}
@@ -145,7 +148,7 @@ Summary:	Orientation & script detection data pack for tesseract
 Data files required to recognize text orientation and scripts.
 
 %files osd
-%{_datadir}/tesseract/tessdata/osd.*
+%{_datadir}/tessdata/osd.*
 
 #-----------------------------------------------------------------
 
@@ -283,21 +286,14 @@ rm -rf ./tessdata-%{version_tessdata}/
 sed -i 's|@scrollviewpath@|\$(DESTDIR)%{_javadir}|' java/Makefile.am
 %endif
 
-%build
-%cmake -DCMAKE_INSTALL_LIBDIR=%{_lib} -DTESSDATA_PREFIX=%{_datadir}/%{name}
-%make_build
-
-cd ..
-
+%build -a
 # Manually build manfiles, cmake does not build them
 man_xslt=http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 for file in doc/*.asc; do
     asciidoc -b docbook -d manpage -o - $file | XML_CATALOG_FILES=%{_sysconfdir}/xml/catalog xsltproc --nonet -o ${file/.asc/} $man_xslt -
 done
 
-%install
-%make_install -C build
-
+%install -a
 mkdir -p %{buildroot}%{_mandir}/{man1,man5}/
 cp -a doc/*.1 %{buildroot}%{_mandir}/man1/
 cp -a doc/*.5 %{buildroot}%{_mandir}/man5/
@@ -305,5 +301,5 @@ cp -a doc/*.5 %{buildroot}%{_mandir}/man5/
 # language data
 for file in tessdata/*.traineddata
 do
-    install -m 0644 -D "$file" %{buildroot}%{_datadir}/tesseract/tessdata/
+    install -m 0644 -D "$file" %{buildroot}%{_datadir}/tessdata/
 done
