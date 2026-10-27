@@ -36,6 +36,8 @@ URL:		https://github.com/tesseract-ocr/%{name}
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}/%{name}-%{version_tesseract}.tar.gz
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}/tessdata-%{version_tessdata}.tar.gz
 #Patch1:		tesseract_cmake.patch
+# text2image links pango_training, which upstream never installs.
+Patch0:		tesseract-5.5.2-install-pango-training.patch
 %if %{with scrollview}
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
