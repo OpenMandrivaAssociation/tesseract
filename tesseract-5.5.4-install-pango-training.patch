@@ -1,7 +1,7 @@
 --- a/src/training/CMakeLists.txt
 +++ b/src/training/CMakeLists.txt
-@@ -441,6 +441,11 @@
-     endif()
+@@ -435,6 +435,11 @@ if(BUILD_TRAINING_TOOLS AND PKG_CONFIG_FOUND)
+     target_link_libraries(pango_training PUBLIC PkgConfig::PANGO)
      target_include_directories(pango_training
                                 PUBLIC pango ${CMAKE_CURRENT_BINARY_DIR})
 +    install(

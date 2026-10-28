@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 5.5.2
+%define version_tesseract 5.5.4
 %define version_tessdata  4.1.0
 
 %define tesseract_major 5
@@ -37,7 +37,7 @@ Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version_tesseract}
 Source1:	https://github.com/tesseract-ocr/tessdata/archive/%{version_tessdata}/tessdata-%{version_tessdata}.tar.gz
 #Patch1:		tesseract_cmake.patch
 # text2image links pango_training, which upstream never installs.
-Patch0:		tesseract-5.5.2-install-pango-training.patch
+Patch0:		tesseract-5.5.4-install-pango-training.patch
 %if %{with scrollview}
 Patch100:	%{name}-3.04.01-scrollview.patch
 Patch101:	%{name}-3.04.01-piccolo2d.patch
