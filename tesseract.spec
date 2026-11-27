@@ -14,7 +14,7 @@ Tesseract data files required to recognize %{?4:%4 }%{3} text. \
 %{_datadir}/tessdata/%{1}.* \
 %{nil}
 
-%define version_tesseract 5.5.4
+%define version_tesseract 5.5.5
 %define version_tessdata  4.1.0
 
 %define tesseract_major 5
@@ -49,7 +49,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(lept) >= 1.71
+BuildRequires:	pkgconfig(lept) >= 1.80
 BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libcurl)
 %if %{with libdoc}
